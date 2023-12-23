@@ -22,12 +22,9 @@
   background-color: var(--background-color);
   color: var(--main-color);
   font-variation-settings: 'wght' var(--font-weiht);
-  /* background-image: var(--fon-pattern); */
-  /* background-image: repeating-linear-gradient(to right, #d3d3d3 2px, transparent 4px),
-  repeating-linear-gradient(#d3d3d3 2px, transparent 2px 4px),
-  linear-gradient(#e7e7e7, #1a1a1a);  */
-  background-image: var(--fon-gradient);
-  background-size: cover;
+  background-image: var(--fon-pattern);
+  background-repeat: repeat;
+  background-size: 4px;
 }
 
 .header {
@@ -45,12 +42,6 @@
   max-inline-size: 696px;
   margin-left: auto;
   margin-right: auto;
-}
-
-.cards {
-  display: flex;
-  flex-direction: column;
-  gap: 49px;
 }
 
 .logo {
@@ -162,82 +153,14 @@
   width: 100%;
   aspect-ratio: 1 / 1;
   border: 2px solid var(--main-color);
-  border-top: none;
-  position: relative;
-
 }
-
-.label {
-  color: var(--main-color);
-  font-family: var(--font-accent);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-transform: uppercase;
-  position: absolute;
-  right: 11px;
-  top: 23px;
-  text-shadow: 0 0 1px var(---stroke-color);
-  /* opacity: 0.5; */
-}
-
-@supports((text-stroke: var(--stroke-color)) or (-webkit-text-stroke: 1px var(--stroke-color))) {
-  .label {
-    -webkit-text-stroke: 1px var(--stroke-color);
-    /* text-stroke: 1px var(--stroke-color); */
-    text-shadow: none;
-  }
-}
-
 
 .card-image {
   object-fit: cover;
   height: 100%;
   width: 100%;
   object-position: right;
-  mix-blend-mode: hard-light;
-  aspect-ratio: 1 / 1;
-  z-index: 3;
 }
-
-.start {
-  filter: opacity(0.9);
-}
-
-.list {
-  filter: sepia(80%);
-}
-
-.doubts {
-  filter: contrast(200%);
-}
-
-.cat {
-  filter: drop-shadow(5px 15px 3px rgba(0, 0, 0, 0.8));
-}
-
-.support {
-  filter: saturate(158%);
-  object-position: left;
-}
-
-.vacation {
-
-  filter: brightness(95%);
-}
-
-.work {
-  filter: invert(0.9);
-  object-position: left;
-}
-
-.strange-feeling {
-  filter: grayscale(0.5);
-
-}
-
-
 
 .card-text {
   background-color: var(--background-color, #fff);
@@ -284,19 +207,6 @@
   cursor: pointer;
 }
 
-/* .button::before {
-  content: "";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  background-color: var(--main-color);
-  scale: 0;
-  color: var(--background-color);
-  transform-origin: 0 0;
-} */
-
 .button::before {
   content: "";
   width: 100%;
@@ -306,12 +216,17 @@
   top: 0;
   background-color: var(--main-color);
   scale: 0;
+  color: var(--background-color);
   transform-origin: 0 0;
 }
 
 .button:hover::before {
   animation: slideBgFromLeft 0.5s ease-in-out forwards;
-  /*???? в рекомендация указано ease-in-out */
+   /*???? в рекомендация указано ease-in-out */
+}
+
+.button:hover .button__text {
+  color: var(--background-color);
 }
 
 .button:hover {
@@ -320,8 +235,7 @@
 }
 
 .button__text {
-  color: var(--button-text-color);
-  mix-blend-mode: difference;
+  color: var(--main-color, #000);
   font-family: var(--font-accent);
   font-size: 14px;
   font-style: normal;
@@ -329,6 +243,7 @@
   line-height: 90%;
   position: relative;
   z-index: 2;
+  transition: color 1s ease;
 }
 
 .buttons {
@@ -358,67 +273,6 @@
 .save-icon {
   position: relative;
   z-index: 2;
-  mix-blend-mode: difference;
-}
-
-
-
-.dialog-save {
-  position: fixed;
-  inset: 0;
-  margin: auto;
-  background-color: var(--background-color);
-  border: 2px solid var(--main-color);
-}
-
-.form-dialog {
-  display: grid;
-  padding: 30px 40px;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-  grid-template-areas:
-    "icon text"
-    "butt butt";
-  gap: 30px 20px;
-}
-
-
-
-.dialog-save:not([open]) {
-  pointer-events: none;
-  opacity: 0;
-}
-
-.dialog-save .save-icon {
-  grid-area: icon;
-  width: 39px;
-  height: 39px;
-}
-
-.dialog-save .button {
-  grid-area: butt;
-  color: var(--button-text-color);
-  mix-blend-mode: difference;
-  padding: 9px 17px;
-}
-
-.doalog-text {
-  color: var(--button-text-color);
-  mix-blend-mode: difference;
-  font-family: var(--font-accent);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  /* 21px */
-  text-transform: uppercase;
-  grid-area: text;
-  max-width: 234px;
-}
-
-.dialog-save::backdrop {
-  opacity: 0.75;
-  background: #000;
 }
 
 .footer {
@@ -472,8 +326,4 @@
     height: 21px;
   }
 
-
-  .form-dialog {
-    padding: 30px;
-  }
 }
